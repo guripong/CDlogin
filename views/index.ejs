@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>캠퍼스 로그인</title>
+  <link rel='stylesheet' href='/stylesheets/style.css' />
+  <script src='/javascripts/jquery-3.1.1.min.js'></script>
+  
+</head>
+
+<body>
+  <form id='login_form' action="/login" method="post">
+    <div>
+      <select id='login_campus' name='login_campus'>
+        <option>캠퍼스골라요</option>
+        <option>본사</option>
+      </select>
+    </div>
+    <div>
+        <select id='login_device' name='login_device'>
+            <option>장비골라요</option>
+            <option>j1</option>
+            <option>c1</option>
+          </select>
+    </div>
+    <div>
+      <input id='login_id' name='login_id' type='text' placeholder="아이디입력" />
+    </div>
+    <div>
+      <input id='login_pw' name='login_pw' type='password' placeholder="비번입력" />
+    </div>
+    <div>
+      <input id='login_try' type='button' value="로그인"/>
+    </div>
+  </form>
+  <div>
+    <h1 id='state_msg'type='text'><%=state_msg%></h1>
+  </div>
+
+  <script>
+      $(document).on("click","#login_try",function(){
+        var login_campus=$('#login_campus').val();
+        var login_device=$('#login_device').val();
+        var login_id=$('#login_id').val();
+        var login_pw=$('#login_pw').val();
+        if(login_campus!='캠퍼스골라요'&&login_device&&login_id&&login_pw){
+          $('#login_form').submit();
+        }
+        else{
+          $('#state_msg').html('값을 다 골라주셔야 로그인시도함');
+        }
+
+      });
+    </script>
+</body>
+
+</html>
