@@ -43,7 +43,7 @@
         var login_device=$('#login_device').val();
         var login_id=$('#login_id').val();
         var login_pw=$('#login_pw').val();
-        if(login_campus!='캠퍼스골라요'&&login_device&&login_id&&login_pw){
+        if(login_campus!='캠퍼스골라요'&&login_device!='장비골라요'&&login_id&&login_pw){
           $('#login_form').submit();
         }
         else{
