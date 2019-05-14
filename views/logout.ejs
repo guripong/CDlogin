@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>캠퍼스 로그인상태</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src='/javascripts/jquery-3.1.1.min.js'></script>
+
+</head>
+
+<body>
+    <form id='logout_form' action="/logout" method="post">
+        <div>
+            <input id='login_campus' name='login_campus' type='text' value='<%=login_campus%>'
+                style=" pointer-events: none;" />
+        </div>
+        <div>
+            <input id='login_device' name='login_device' type='text' value='<%=login_device%>'
+                style=" pointer-events: none;" />
+        </div>
+        <div>
+            <input id='login_id' name='login_id' type='text' value='<%=login_id%>' style=" pointer-events: none;" />
+        </div>
+        <div>
+            <input id='logout_btn' type='button' value='logout' />
+        </div>
+    </form>
+
+    <div>
+        <h1 id='state_msg' type='text'><%=state_msg%></h1>
+    </div>
+
+    <script>
+        $(document).on("click", "#logout_btn", function () {
+            fetch('/logout', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json, text/plain, */*',
+                    'Content-type': 'application/json'
+                },
+                body: JSON.stringify(
+                    {
+                        login_campus: $('#login_campus').val(),
+                        login_device: $('#login_device').val(),
+                        login_id: $('#login_id').val(),
+                    }
+                )
+            }).then((res) => res.json()
+            ).then((data) => {
+                if(data.success==true){
+                    alert('로그아웃성공');
+                    window.location.href = '/';
+                }
+                else{
+                    alert('로그아웃실패 문의바람');
+                    window.location.href = '/';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
